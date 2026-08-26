@@ -62,7 +62,7 @@ export const preguntas = [
   },
   {
     texto: "¿Qué NO quiero?",
-    ejemplo: 'Nada de "sumérgete en el mundo de la fotografía", nada de adjetivos vacíos.',
+    ejemplo: 'Nada de "sumérgete en el mundo del cine", nada de adjetivos vacíos.',
     clave: true,
   },
 ];
@@ -334,7 +334,10 @@ Nuevo Perfiles TVU. Link en la bio.
 Contexto: TVU (Producciones TVU) es el grupo de producción
 audiovisual de la Universidad EAFIT, en Medellín. Publican en
 Instagram (@tvueafit, unos 3.500 seguidores) y en YouTube. Uno de
-sus formatos es 35mm, de fotografía.
+sus proyectos es 35mm: un festival anual de cortometrajes, de
+estudiantes para estudiantes, abierto a universitarios del Área
+Metropolitana. Cada edición propone una temática y los
+participantes hacen un corto de 7 minutos.
 
 Vamos a hacer una campaña para la próxima edición de 35mm.
 
@@ -364,21 +367,32 @@ puedas saber.`,
       "**lovable.dev.** No busca una plantilla: escribe el código de la página desde cero y al terminar da una URL real. Y esa URL nos hace falta para el paso siguiente.",
     donde: "Lovable · primer mensaje",
     texto: `Crea una landing page de una sola sección para la próxima
-edición de 35mm, el formato de fotografía de TVU (Producciones
-TVU), el grupo de producción audiovisual de la Universidad EAFIT
-en Medellín.
+edición de 35mm, el festival anual de cortometrajes de TVU
+(Producciones TVU), el grupo de producción audiovisual de la
+Universidad EAFIT en Medellín. Es de estudiantes para
+estudiantes: cortos de 7 minutos sobre una temática que se
+anuncia cada edición.
 
 Debe tener:
-- Encabezado con el nombre 35mm y una frase de qué es
-- Fecha, lugar y cómo participar
-- Una galería con espacio para 3 fotos
-- Un formulario con nombre, correo institucional y semestre
+- Encabezado con el nombre 35mm enorme y una frase de qué es
+- La temática de esta edición, la fecha límite y cómo inscribirse
+- Tres bloques: quién puede participar, qué se entrega, qué se gana
+- Un formulario con nombre, universidad, correo y título del corto
 - Un pie con Instagram (@tvueafit) y YouTube (@TVUeafit)
 
-Diseño limpio, una sola columna, tipografía grande, que se vea
-bien en celular. Fondo oscuro, mucho aire, estética de fotografía.`,
+Identidad de marca, respétala:
+- Fondo #191818
+- Acentos #8446F3 (violeta) y #39E4FF (cian), y #4820B7 para
+  bloques secundarios
+- Texto en #FFFFFF
+- Titulares en una tipografía sans ultra condensada y muy pesada,
+  en mayúsculas, tamaño enorme
+- El resto del texto en una sans limpia de peso medio
+- Los rótulos de sección terminan en guion bajo, así: INSCRIPCIÓN_
+
+Una sola columna, mucho aire, que se vea bien en celular.`,
     nota:
-      "El plan gratuito da 5 mensajes de construcción al día. El primero va lo más completo posible: cada «cámbiame el color» gasta uno.",
+      "El plan gratuito da 5 mensajes de construcción al día. El primero va lo más completo posible: cada «cámbiame el color» gasta uno. Por eso la identidad va desde el mensaje uno y no como corrección.",
   },
 
   {
@@ -401,6 +415,11 @@ bien en celular. Fondo oscuro, mucho aire, estética de fotografía.`,
         titulo: "Por eso Lovable va primero",
         texto:
           "TVU no tiene sitio web, y Pomelli necesita uno para leer. La página que acabamos de publicar es justamente lo que le vamos a dar.",
+      },
+      {
+        titulo: "Y lo que adivine mal, se corrige",
+        texto:
+          "El Business DNA se edita a mano: colores, tipografía y tono. **Ahí es donde entra el manual de marca de 35mm** — la herramienta propone, ustedes corrigen con lo que ya está definido.",
       },
     ],
   },

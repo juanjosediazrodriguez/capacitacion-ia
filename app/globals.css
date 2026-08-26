@@ -1,0 +1,815 @@
+/* ------------------------------------------------------------------
+   Capacitación de IA — TVU
+   El sitio es la presentación: cada sección ocupa una pantalla y se
+   avanza con las flechas. En el celular se lee de corrido, como
+   documento. Un solo CSS sirve para los dos usos.
+   ------------------------------------------------------------------ */
+
+:root {
+  --paper: #f3f5f3;
+  --card: #ffffff;
+  --ink: #14181a;
+  --ink-soft: #4a5551;
+  --ink-faint: #7c8783;
+  --rule: #dce2de;
+  --accent: #0e6357;
+  --accent-ink: #0a4c43;
+  --accent-wash: #e4eeea;
+  --warn: #a85d16;
+  --warn-wash: #f6ebdd;
+  --mono-bg: #10201d;
+  --mono-fg: #dce8e3;
+  --mono-dim: #7e9891;
+
+  --gutter: clamp(1.25rem, 5vw, 4rem);
+  --medida: 32ch;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #0e1413;
+    --card: #161d1b;
+    --ink: #e7edea;
+    --ink-soft: #a8b5b1;
+    --ink-faint: #78857f;
+    --rule: #26322e;
+    --accent: #4fbba6;
+    --accent-ink: #7fd3c1;
+    --accent-wash: #16302b;
+    --warn: #d99a56;
+    --warn-wash: #2e2418;
+    --mono-bg: #0a1211;
+    --mono-fg: #d3e3dd;
+    --mono-dim: #6f8781;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--f-body), Georgia, "Times New Roman", serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--f-display), "Helvetica Neue", Arial, sans-serif;
+  margin: 0;
+  text-wrap: balance;
+}
+
+/* ------------------------------------------------------------------
+   El armazón de la presentación
+   ------------------------------------------------------------------ */
+
+.deck {
+  scroll-snap-type: y proximity;
+}
+
+.slide {
+  min-height: 100svh;
+  scroll-snap-align: start;
+  display: flex;
+  align-items: center;
+  padding: clamp(3.5rem, 9vh, 6rem) var(--gutter);
+  border-bottom: 1px solid var(--rule);
+}
+
+.slide:last-child {
+  border-bottom: 0;
+}
+
+.slide-inner {
+  width: 100%;
+  max-width: 60rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.25rem, 2.6vh, 2.25rem);
+}
+
+.rotulo {
+  font-family: var(--f-display), sans-serif;
+  font-size: clamp(0.72rem, 1.05vw, 0.95rem);
+  font-weight: 600;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.titulo {
+  font-size: clamp(1.85rem, 4.3vw, 3.6rem);
+  font-weight: 700;
+  line-height: 1.06;
+  letter-spacing: -0.022em;
+}
+
+.titulo-menor {
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.018em;
+}
+
+.texto {
+  font-size: clamp(1.02rem, 1.55vw, 1.45rem);
+  color: var(--ink-soft);
+  max-width: 44ch;
+  margin: 0;
+}
+
+.texto strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* ------------------------------------------------------------------
+   Portada
+   ------------------------------------------------------------------ */
+
+.portada-marca {
+  font-family: var(--f-display), sans-serif;
+  font-size: clamp(0.8rem, 1.15vw, 1rem);
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.portada-titulo {
+  font-size: clamp(2.4rem, 7vw, 5.5rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.portada-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.75rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--rule);
+  font-family: var(--f-display), sans-serif;
+  font-size: clamp(0.8rem, 1.1vw, 0.95rem);
+  color: var(--ink-faint);
+}
+
+.pista {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--f-display), sans-serif;
+  font-size: 0.82rem;
+  color: var(--ink-faint);
+}
+
+.tecla {
+  font-family: var(--f-mono), monospace;
+  font-size: 0.75rem;
+  border: 1px solid var(--rule);
+  border-bottom-width: 2px;
+  border-radius: 4px;
+  padding: 0.1rem 0.45rem;
+  color: var(--ink-soft);
+  background: var(--card);
+}
+
+/* ------------------------------------------------------------------
+   La cadena de cuatro pasos
+   ------------------------------------------------------------------ */
+
+.cadena {
+  display: grid;
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+@media (min-width: 46rem) {
+  .cadena {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.cadena-paso {
+  background: var(--card);
+  padding: clamp(0.9rem, 2vw, 1.4rem);
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.cadena-n {
+  font-family: var(--f-mono), monospace;
+  font-size: 0.8rem;
+  color: var(--accent);
+}
+
+.cadena-titulo {
+  font-family: var(--f-display), sans-serif;
+  font-weight: 600;
+  font-size: clamp(1rem, 1.6vw, 1.3rem);
+}
+
+.cadena-pregunta {
+  font-size: clamp(0.85rem, 1.1vw, 1rem);
+  color: var(--ink-faint);
+}
+
+/* Quién hace cada paso. Marca de un vistazo que tres de los cuatro los
+   hacen ellos — es la promesa de la sesión, y conviene que se vea. */
+.cadena-quien {
+  align-self: flex-start;
+  margin-top: 0.4rem;
+  font-family: var(--f-display), sans-serif;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  padding: 0.15rem 0.5rem;
+}
+
+.cadena-quien[data-activo="si"] {
+  color: var(--accent-ink);
+  background: var(--accent-wash);
+  border-color: transparent;
+}
+
+/* ------------------------------------------------------------------
+   Listas de puntos
+   ------------------------------------------------------------------ */
+
+.puntos {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.puntos li {
+  background: var(--card);
+  padding: clamp(1rem, 2.2vw, 1.5rem);
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.punto-titulo {
+  font-family: var(--f-display), sans-serif;
+  font-weight: 600;
+  font-size: clamp(1.05rem, 1.75vw, 1.5rem);
+  letter-spacing: -0.01em;
+}
+
+.punto-texto {
+  font-size: clamp(0.95rem, 1.3vw, 1.2rem);
+  color: var(--ink-soft);
+}
+
+@media (min-width: 52rem) {
+  .puntos.en-columnas {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* ------------------------------------------------------------------
+   Comparación A / B
+
+   Las dos opciones se ven EXACTAMENTE igual a propósito. Cualquier
+   diferencia de estilo —un borde, un acento, una sombra— delata cuál
+   es la buena y le quita el sentido a la pregunta.
+   ------------------------------------------------------------------ */
+
+.comparacion {
+  display: grid;
+  gap: 1rem;
+}
+
+@media (min-width: 48rem) {
+  .comparacion {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.opcion {
+  background: var(--card);
+  border: 1px solid var(--rule);
+  border-radius: 5px;
+  padding: clamp(0.9rem, 2vw, 1.35rem);
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.opcion-etiqueta {
+  font-family: var(--f-display), sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--ink-faint);
+}
+
+.opcion-texto {
+  margin: 0;
+  white-space: pre-wrap;
+  font-family: var(--f-body), Georgia, serif;
+  font-size: clamp(0.82rem, 1.15vw, 1.02rem);
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+/* ------------------------------------------------------------------
+   Las cinco preguntas
+   ------------------------------------------------------------------ */
+
+.preguntas {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  overflow: hidden;
+  counter-reset: pregunta;
+}
+
+.preguntas li {
+  background: var(--card);
+  padding: clamp(0.7rem, 1.5vw, 1.05rem) clamp(0.9rem, 2vw, 1.35rem);
+  display: grid;
+  grid-template-columns: 1.7rem 1fr;
+  column-gap: 0.85rem;
+  align-items: baseline;
+  counter-increment: pregunta;
+}
+
+.preguntas li::before {
+  content: counter(pregunta);
+  font-family: var(--f-mono), monospace;
+  font-size: 0.85rem;
+  color: var(--accent);
+}
+
+.pregunta-texto {
+  font-family: var(--f-display), sans-serif;
+  font-weight: 600;
+  font-size: clamp(1rem, 1.65vw, 1.4rem);
+}
+
+.pregunta-ejemplo {
+  grid-column: 2;
+  font-family: var(--f-mono), monospace;
+  font-size: clamp(0.72rem, 1.05vw, 0.92rem);
+  line-height: 1.55;
+  color: var(--ink-faint);
+}
+
+.preguntas li.clave {
+  background: var(--accent-wash);
+}
+
+.preguntas li.clave .pregunta-texto {
+  color: var(--accent-ink);
+}
+
+.nota-lateral {
+  font-size: clamp(0.92rem, 1.25vw, 1.12rem);
+  color: var(--ink-soft);
+  padding-left: 0.9rem;
+  border-left: 2px solid var(--accent);
+  max-width: 52ch;
+  margin: 0;
+}
+
+/* ------------------------------------------------------------------
+   Bloques de prompt
+   ------------------------------------------------------------------ */
+
+.prompt {
+  background: var(--mono-bg);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.prompt-barra {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.45rem 0.5rem 0.45rem 0.9rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+.prompt-donde {
+  font-family: var(--f-mono), monospace;
+  font-size: clamp(0.66rem, 0.95vw, 0.8rem);
+  letter-spacing: 0.05em;
+  color: var(--mono-dim);
+}
+
+.copiar {
+  font-family: var(--f-display), sans-serif;
+  font-size: clamp(0.68rem, 0.95vw, 0.8rem);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--mono-fg);
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 4px;
+  padding: 0.32rem 0.75rem;
+  cursor: pointer;
+  flex: none;
+  transition: background 0.15s ease;
+}
+
+.copiar:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.copiar:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.copiar[data-listo="si"] {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #06201c;
+}
+
+.prompt pre {
+  margin: 0;
+  padding: clamp(0.85rem, 1.8vw, 1.2rem) 0.9rem clamp(1rem, 2vw, 1.35rem);
+  overflow-x: auto;
+  font-family: var(--f-mono), monospace;
+  font-size: clamp(0.7rem, 1.1vw, 1rem);
+  line-height: 1.7;
+  color: var(--mono-fg);
+  tab-size: 2;
+}
+
+/* ------------------------------------------------------------------
+   Avisos y ejercicios
+   ------------------------------------------------------------------ */
+
+.aviso {
+  background: var(--warn-wash);
+  border-left: 3px solid var(--warn);
+  border-radius: 4px;
+  padding: clamp(0.85rem, 1.8vw, 1.25rem) clamp(1rem, 2vw, 1.35rem);
+  font-size: clamp(0.95rem, 1.3vw, 1.2rem);
+  color: var(--ink);
+  max-width: 56ch;
+}
+
+.aviso strong {
+  color: var(--warn);
+}
+
+/* Cabecera de un taller: el título a la izquierda, el reloj a la derecha.
+   Los talleres son la sección más alta de la presentación —llevan prompt
+   completo— así que el tiempo va en un chip y no en un número gigante. */
+.taller-cabeza {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.reloj {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.28rem;
+  font-family: var(--f-display), sans-serif;
+  font-weight: 700;
+  color: var(--accent);
+  background: var(--accent-wash);
+  border-radius: 999px;
+  padding: 0.3rem 0.9rem;
+  flex: none;
+}
+
+.reloj-numero {
+  font-size: clamp(1.4rem, 2.6vw, 2.2rem);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+}
+
+.reloj-unidad {
+  font-size: clamp(0.8rem, 1.2vw, 1rem);
+  letter-spacing: 0.03em;
+}
+
+.regla {
+  font-family: var(--f-display), sans-serif;
+  font-weight: 600;
+  font-size: clamp(1rem, 1.6vw, 1.35rem);
+  color: var(--ink);
+  padding: 0.75rem 1rem;
+  background: var(--accent-wash);
+  border-radius: 4px;
+  max-width: 48ch;
+}
+
+/* ------------------------------------------------------------------
+   Riel de progreso y contador
+   ------------------------------------------------------------------ */
+
+.riel {
+  position: fixed;
+  right: clamp(0.5rem, 1.5vw, 1.25rem);
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  z-index: 20;
+}
+
+.riel button {
+  width: 9px;
+  height: 9px;
+  padding: 0;
+  border-radius: 50%;
+  border: 1px solid var(--ink-faint);
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.riel button[aria-current="true"] {
+  background: var(--accent);
+  border-color: var(--accent);
+  transform: scale(1.35);
+}
+
+.riel button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+@media (max-width: 46rem) {
+  .riel {
+    display: none;
+  }
+}
+
+.contador {
+  position: fixed;
+  left: var(--gutter);
+  bottom: clamp(0.75rem, 2vh, 1.25rem);
+  font-family: var(--f-mono), monospace;
+  font-size: 0.75rem;
+  color: var(--ink-faint);
+  font-variant-numeric: tabular-nums;
+  z-index: 20;
+  pointer-events: none;
+}
+
+/* ------------------------------------------------------------------
+   La guía del facilitador (/guia)
+   ------------------------------------------------------------------ */
+
+.guia {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: clamp(2.5rem, 6vh, 4.5rem) var(--gutter) 6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.guia h1 {
+  font-size: clamp(2rem, 5.5vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.022em;
+  line-height: 1.05;
+}
+
+.guia h2 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: -0.012em;
+}
+
+.guia section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+}
+
+.etiqueta-seccion {
+  font-family: var(--f-display), sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  padding-bottom: 0.55rem;
+  border-bottom: 2px solid var(--ink);
+}
+
+.momentos {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.momento {
+  display: grid;
+  grid-template-columns: 5.5rem 1fr;
+  gap: 0.4rem 1.25rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.momento:last-child {
+  border-bottom: 0;
+}
+
+.momento-min {
+  font-family: var(--f-mono), monospace;
+  font-size: 0.82rem;
+  color: var(--accent);
+  padding-top: 0.28rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.momento-cuerpo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.momento h3 {
+  font-size: 1.12rem;
+  font-weight: 600;
+}
+
+.momento ul {
+  margin: 0;
+  padding-left: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+}
+
+.momento ul::marker {
+  color: var(--accent);
+}
+
+.frase {
+  font-size: 0.98rem;
+  padding: 0.7rem 0.9rem;
+  background: var(--accent-wash);
+  border-radius: 4px;
+  color: var(--accent-ink);
+  margin: 0;
+}
+
+.chip-ejercicio {
+  align-self: flex-start;
+  font-family: var(--f-display), sans-serif;
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--warn);
+  background: var(--warn-wash);
+  border-radius: 3px;
+  padding: 0.18rem 0.5rem;
+}
+
+@media (max-width: 34rem) {
+  .momento {
+    grid-template-columns: 1fr;
+    gap: 0.55rem;
+  }
+}
+
+.checklist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.checklist li {
+  display: grid;
+  grid-template-columns: 1.1rem 1fr;
+  gap: 0.75rem;
+  align-items: start;
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+}
+
+.checklist li::before {
+  content: "";
+  width: 1rem;
+  height: 1rem;
+  margin-top: 0.32rem;
+  border: 1.5px solid var(--ink-faint);
+  border-radius: 3px;
+}
+
+.tabla-envoltura {
+  overflow-x: auto;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.93rem;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 0.6rem 0.85rem;
+  border-bottom: 1px solid var(--rule);
+  vertical-align: top;
+}
+
+th {
+  font-family: var(--f-display), sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+td:first-child {
+  font-weight: 600;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.enlace-volver {
+  font-family: var(--f-display), sans-serif;
+  font-size: 0.82rem;
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+  align-self: flex-start;
+}
+
+.enlace-volver:hover {
+  color: var(--accent-ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+@media print {
+  .riel,
+  .contador,
+  .pista {
+    display: none;
+  }
+
+  .slide {
+    min-height: auto;
+    page-break-after: always;
+    border-bottom: 0;
+  }
+}

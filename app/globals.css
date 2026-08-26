@@ -474,6 +474,52 @@ h3 {
 }
 
 /* ------------------------------------------------------------------
+   Banco de prompts
+
+   Es la única sección que se sale de una pantalla, y está bien: no se
+   proyecta completa, se lee después desde el celular. Por eso los
+   prompts van más compactos que en el resto de la presentación.
+   ------------------------------------------------------------------ */
+
+.banco {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.banco-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.banco-cabeza {
+  display: flex;
+  align-items: baseline;
+  gap: 0.7rem;
+}
+
+.banco-n {
+  font-family: var(--f-mono), monospace;
+  font-size: 0.78rem;
+  color: var(--accent);
+  flex: none;
+}
+
+.banco-para {
+  font-family: var(--f-display), sans-serif;
+  font-weight: 600;
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
+  letter-spacing: -0.008em;
+  margin: 0;
+}
+
+.banco .prompt pre {
+  font-size: clamp(0.68rem, 0.95vw, 0.85rem);
+  line-height: 1.6;
+}
+
+/* ------------------------------------------------------------------
    Avisos y ejercicios
    ------------------------------------------------------------------ */
 

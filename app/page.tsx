@@ -127,20 +127,23 @@ function Contenido({ seccion }: { seccion: Seccion }) {
         </>
       );
 
-    case "taller":
+    case "banco":
       return (
         <>
           <span className="rotulo">{seccion.rotulo}</span>
-          <div className="taller-cabeza">
-            <h2 className="titulo-menor">{seccion.titulo}</h2>
-            <span className="reloj">
-              <span className="reloj-numero">{seccion.minutos}</span>
-              <span className="reloj-unidad">min</span>
-            </span>
+          <h2 className="titulo-menor">{seccion.titulo}</h2>
+          <p className="texto">{negrita(seccion.intro)}</p>
+          <div className="banco">
+            {seccion.prompts.map((p, i) => (
+              <div className="banco-item" key={p.para}>
+                <div className="banco-cabeza">
+                  <span className="banco-n">{String(i + 1).padStart(2, "0")}</span>
+                  <h3 className="banco-para">{p.para}</h3>
+                </div>
+                <Prompt donde="ChatGPT · debajo del brief" texto={p.texto} />
+              </div>
+            ))}
           </div>
-          <p className="texto">{negrita(seccion.consigna)}</p>
-          <Prompt donde={seccion.donde} texto={seccion.texto} />
-          <p className="regla">{negrita(seccion.regla)}</p>
         </>
       );
 

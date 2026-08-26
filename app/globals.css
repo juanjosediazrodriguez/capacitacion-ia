@@ -341,6 +341,13 @@ h3 {
   color: var(--ink);
 }
 
+/* Cuando lo que se compara son prompts y no copys. */
+.opcion-texto.es-mono {
+  font-family: var(--f-mono), monospace;
+  font-size: clamp(0.72rem, 1vw, 0.9rem);
+  line-height: 1.65;
+}
+
 /* ------------------------------------------------------------------
    Las cinco preguntas
    ------------------------------------------------------------------ */

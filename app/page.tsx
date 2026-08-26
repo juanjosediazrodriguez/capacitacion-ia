@@ -109,10 +109,13 @@ function Contenido({ seccion }: { seccion: Seccion }) {
             {seccion.opciones.map((opcion) => (
               <div className="opcion" key={opcion.etiqueta}>
                 <span className="opcion-etiqueta">{opcion.etiqueta}</span>
-                <p className="opcion-texto">{opcion.texto}</p>
+                <p className={seccion.mono ? "opcion-texto es-mono" : "opcion-texto"}>
+                  {opcion.texto}
+                </p>
               </div>
             ))}
           </div>
+          {seccion.nota ? <p className="nota-lateral">{negrita(seccion.nota)}</p> : null}
         </>
       );
 

@@ -10,7 +10,7 @@ export const guia = {
   entrada:
     "Siete bloques en sesenta minutos. Los cuatro primeros construyen el criterio " +
     "—quién eres, qué es un LLM, cómo se pide, y dónde NO usarla— y los tres últimos " +
-    "montan una campaña de 35mm de principio a fin: brief en ChatGPT, página en Lovable, " +
+    "montan una campaña de 35mm de principio a fin: contexto en ChatGPT, página en Lovable, " +
     "campaña en Pomelli. Cierra con crítica, no con hype.",
 };
 
@@ -76,20 +76,38 @@ export const minutado: Momento[] = [
     ],
   },
   {
-    min: "29 – 39",
-    titulo: "Bloque 5 · El brief de 35mm",
+    min: "29 – 36",
+    titulo: "Bloque 5a · El contexto de 35mm",
     frase: "Ninguna herramienta inventa criterio. Le ponen forma al que ustedes traigan.",
     acciones: [
       "Mostrar el mapa de los cuatro eslabones. Señalar desde ya el cuarto —el copy en español lo escriben ellos— porque ahí vuelves en el bloque 6.",
-      "Explicar por qué se empieza por el brief: si entran a las herramientas con «hagamos algo de 35mm», sale genérico y le echan la culpa a la herramienta.",
-      "Proyectar el prompt del brief y PEDIRLES QUE LE BUSQUEN LAS CINCO PREGUNTAS. Están todas, en orden. Que las señalen ellos.",
+      "Explicar por qué se empieza por el contexto: si entran a las herramientas con «hagamos algo de 35mm», sale genérico y le echan la culpa a la herramienta.",
+      "UNA SOLA PALABRA TODA LA SESIÓN: «contexto». Es el nombre que ya tiene en la pregunta 2. Decir «brief» una vez —«en mercadeo a esto le dicen brief»— y no volver a usarlo hablándole a la sala.",
+      "Pero SÍ decir por qué el prompt le pide un «brief» al modelo y no «el contexto»: es el término del oficio y le llega mejor definido. Dos frases, y es una lección de prompting gratis.",
+      "Proyectar el prompt y PEDIRLES QUE LE BUSQUEN LAS CINCO PREGUNTAS. Están todas, en orden. Que las señalen ellos.",
       "Señalar el párrafo de contexto: dice que 35mm es un festival de cortos de 7 minutos, de estudiantes para estudiantes, del Área Metropolitana. Eso está en el manual de marca y no en internet. ES la pregunta 2 hecha objeto — si tienen el manual a mano, mostrarlo.",
       "Correrlo en vivo. Mientras responde, señalar los [SUPUESTO] que vayan apareciendo.",
-      "El brief que salga es el insumo de los siguientes 15 minutos. Dejarlo en una pestaña abierta.",
+      "El contexto que salga es el insumo de todo lo que viene. Dejarlo en una pestaña abierta.",
     ],
   },
   {
-    min: "39 – 54",
+    min: "36 – 41",
+    titulo: "Bloque 5b · El experimento controlado",
+    frase: "El mismo pedido, dos veces. Lo único que cambia es el contexto.",
+    acciones: [
+      "DOS VENTANAS SEPARADAS, dos conversaciones nuevas. Si se corre en el mismo chat, el contexto sigue arriba en la conversación y la versión «sin contexto» también sale buena — el experimento probaría lo contrario de lo que quieres, y no te darías cuenta.",
+      "Dejarlas abiertas lado a lado ANTES de empezar. Nada de abrir pestañas en vivo.",
+      "La desnuda primero. Si corres la buena primero, la sala ya tiene el listón alto y la segunda parece un montaje.",
+      "Correr la ventana 1: «escribe 3 opciones de copy para Instagram anunciando la convocatoria de 35mm». Leer una en voz alta. No comentarla.",
+      "Correr la ventana 2: el mismo pedido, con el contexto pegado arriba. Leer la equivalente.",
+      "SEÑALAR LA TRAZABILIDAD, que es lo mejor del bloque y lo más fácil de que se te pase: cada frase buena sale de una línea del contexto. «Deja de posponer ese guion que tienes archivado» sale del perfil 1; «grabar con el celular o con cámara de cine da igual» sale del perfil 2. Señalar la línea del contexto y después la del copy, con el dedo.",
+      "Y el contraste que de verdad remata: la ventana 1 se inventó requisitos —«portafolio, sinopsis o ficha técnica»— con total seguridad. La ventana 2 marcó los [SUPUESTO] y al final PREGUNTÓ por la temática. Mismo modelo, mismo minuto: una alucinó y la otra pidió el dato.",
+      "Preguntar a la sala qué cambió. Van a decir cosas como «esta sí dice qué es» o «la otra podría ser de cualquier festival». Eso es exactamente el punto.",
+      "Este ejercicio es mejor que el A/B de la apertura porque es en vivo y controlado: mismo modelo, mismo pedido, misma hora, una sola variable. Vale la pena decirlo así.",
+    ],
+  },
+  {
+    min: "41 – 55",
     titulo: "Bloque 6 · Lovable → Pomelli",
     acciones: [
       "Lovable primero, y decir por qué: Pomelli necesita leer una página, y TVU no tiene sitio web. El orden no es capricho.",
@@ -104,14 +122,14 @@ export const minutado: Momento[] = [
     ],
   },
   {
-    min: "54 – 60",
+    min: "55 – 60",
     titulo: "Bloque 7 · El banco de prompts y la reflexión",
     frase: "De todo lo que vieron hoy, ¿qué NO meterían en TVU?",
     acciones: [
       "Mostrar el banco de prompts y decir de una que NO hay que copiarlos ahora: quedan en la página. Si no lo dices, se ponen a transcribir y dejan de oírte.",
       "Bajar despacio por los cinco y nombrar para qué sirve cada uno. No leerlos completos.",
       "Detenerse en el número 4 —arreglar un copy que no convence—: es el único que arranca de algo que ellos ya escribieron, y por eso es el que más van a usar.",
-      "Repetir lo del brief: todos empiezan pegándolo arriba. Por eso son tan cortos.",
+      "Repetir lo del contexto: todos empiezan pegándolo arriba. Por eso son tan cortos.",
       "AHORA SÍ la pregunta de la reflexión, y CALLARSE. Los primeros diez segundos de silencio son normales; aguantarlos.",
       "Si nadie arranca, dar tú un ejemplo propio y devolver la pregunta: «yo no le dejaría escoger a quién entrevistamos, ¿ustedes qué?».",
       "Cerrar con el remate del priorizador: no le crean, mídanlo.",
@@ -126,7 +144,8 @@ export const preparacion: string[] = [
   "GUARDAR LA URL DE LA PÁGINA DEL ENSAYO. Si Lovable falla en vivo, Pomelli se queda sin nada que leer — con esa URL de respaldo el bloque 6 sobrevive igual.",
   "Grabar el ensayo en video. Es el plan B si falla el wifi.",
   "Crear la cuenta de Lovable con anticipación: el plan gratuito da 5 créditos de build al día y se reinician a las 00:00 UTC. Ensayar el jueves para llegar el viernes con los 5 frescos.",
-  "Tener el brief del ensayo copiado en un bloc de notas, por si ChatGPT se cae y toca seguir con el bloque 6.",
+  "Tener el contexto del ensayo copiado en un bloc de notas, por si ChatGPT se cae y toca seguir con el bloque 6.",
+  "DEJAR ABIERTAS LAS DOS VENTANAS del experimento del bloque 5b antes de empezar, las dos en conversaciones nuevas y vacías. Abrir pestañas en vivo se come el minuto que no tienes, y una ventana con historial arruina la comparación.",
   "Preparar tu propia respuesta para la pregunta del bloque 7, por si la sala se queda callada.",
   "Confirmar cuántos son, si hay proyector y si el audio sirve.",
 ];
@@ -148,6 +167,11 @@ export const riesgos: Riesgo[] = [
     situacion: "El copy de Pomelli sale en inglés y alguien lo señala",
     respuesta:
       "Ya lo avisaste antes de que saliera. Aprovecharlo: es la prueba de que el criterio y el idioma siguen siendo trabajo de ellos.",
+  },
+  {
+    situacion: "El experimento del 5b no muestra diferencia",
+    respuesta:
+      "Casi seguro las dos ventanas comparten conversación y el contexto sigue arriba. Abrir un chat nuevo de verdad y repetir la ventana 1.",
   },
   {
     situacion: "El bloque 3 se estira",

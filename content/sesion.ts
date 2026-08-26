@@ -13,11 +13,17 @@
  *   2 · Qué es un LLM                           05–12
  *   3 · Prompt engineering                      12–24
  *   4 · Dónde NO usar IA                        24–29
- *   5 · El brief de 35mm                        29–39
+ *   5 · El contexto de 35mm                     29–41
  *   6 · Lovable → Pomelli                       39–54
  *   7 · Reflexión                               54–60
  *
- * El bloque 5 es la bisagra: sin brief, las herramientas del 6
+ * UNA SOLA PALABRA PARA LA SALA: "contexto". Es el nombre que ya tiene
+ * ese casillero en las cinco preguntas (la 2), y meter un segundo
+ * nombre para lo mismo cuesta más de lo que rinde. "Brief" aparece
+ * únicamente DENTRO del prompt, porque es el término técnico del
+ * gremio y le llega al modelo mucho mejor definido.
+ *
+ * El bloque 5 es la bisagra: sin contexto, las herramientas del 6
  * devuelven basura genérica. Y Pomelli necesita una URL que lee para
  * sacar la identidad — por eso Lovable va ANTES que Pomelli y no al
  * revés.
@@ -33,7 +39,7 @@ export const sesion = {
 
 /** La cadena de la campaña. Se usa en el mapa y en el cierre. */
 export const cadena = [
-  { n: 1, titulo: "Brief", pregunta: "¿Qué vamos a decir?", quien: "ChatGPT" },
+  { n: 1, titulo: "Contexto", pregunta: "¿Qué vamos a decir?", quien: "ChatGPT" },
   { n: 2, titulo: "Página", pregunta: "¿Dónde aterriza?", quien: "Lovable" },
   { n: 3, titulo: "Campaña", pregunta: "¿Qué piezas van?", quien: "Pomelli" },
   { n: 4, titulo: "Copy", pregunta: "¿Cómo suena?", quien: "Ustedes" },
@@ -52,7 +58,7 @@ export const preguntas = [
   },
   {
     texto: "¿Qué quiero?",
-    ejemplo: "El brief de la próxima edición de 35mm.",
+    ejemplo: "El contexto de la próxima edición de 35mm, escrito de una vez.",
     clave: false,
   },
   {
@@ -102,6 +108,9 @@ export type Seccion =
       rotulo: string;
       titulo: string;
       opciones: { etiqueta: string; texto: string }[];
+      /** Para comparar prompts en vez de copys: los pone en monoespaciada. */
+      mono?: boolean;
+      nota?: string;
     }
   | {
       id: string;
@@ -300,7 +309,7 @@ Nuevo Perfiles TVU. Link en la bio.
   },
 
   // ================================================================
-  // BLOQUE 5 · 29–39 · El brief — la bisagra de la sesión
+  // BLOQUE 5 · 29–41 · El contexto — la bisagra de la sesión
   // ================================================================
 
   {
@@ -313,21 +322,21 @@ Nuevo Perfiles TVU. Link en la bio.
   },
 
   {
-    id: "el-brief",
+    id: "el-contexto",
     tipo: "declaracion",
     rotulo: "Y se empieza por acá, no por la herramienta",
-    titulo: "El brief se escribe una vez y se pega arriba de todos los prompts que vengan.",
+    titulo: "El contexto se escribe una vez y se pega arriba de todos los prompts que vengan.",
     texto:
-      "No es un documento para archivar: es **la pregunta 2 escrita una sola vez y guardada**. Sin él, cada vez que quieran un copy les toca volver a explicar quién es TVU, qué es 35mm y a quién le hablan. Con él, el prompt de un copy son cuatro líneas.",
+      "Es **la pregunta 2, escrita bien y guardada**. Sin él, cada vez que quieran un copy les toca volver a explicar quién es TVU, qué es 35mm y a quién le hablan. Con él, el prompt de un copy son cuatro líneas. *En mercadeo a este documento le dicen brief.*",
   },
 
   {
-    id: "prompt-brief",
+    id: "prompt-contexto",
     tipo: "prompt",
     rotulo: "Bloque 5 · Las cinco preguntas, aplicadas",
-    titulo: "El brief de 35mm",
+    titulo: "El contexto de 35mm",
     intro:
-      "Búsquenle las cinco preguntas mientras lo leo. Están todas, en orden.",
+      "Búsquenle las cinco preguntas mientras lo leo — están todas, en orden. Y fíjense en que al modelo le pido un **brief**, no «el contexto»: es el término del oficio, y una palabra precisa le llega mejor definida que una vaga.",
     donde: "ChatGPT",
     texto: `Eres estratega de marketing digital.
 
@@ -354,8 +363,32 @@ puedas saber.`,
       "Esa última línea hace que el modelo señale lo que se está inventando. Sin ella, las suposiciones llegan con el mismo tono de certeza que los hechos.",
   },
 
+  {
+    id: "experimento",
+    tipo: "comparacion",
+    mono: true,
+    rotulo: "Bloque 5 · Y ahora la prueba",
+    titulo: "El mismo pedido, dos veces. Lo único que cambia es el contexto.",
+    nota:
+      "Van en **dos ventanas separadas**, dos conversaciones nuevas. Si se corren en el mismo chat, el contexto queda arriba y el modelo lo sigue viendo — la comparación no valdría nada.",
+    opciones: [
+      {
+        etiqueta: "Ventana 1 — sin contexto",
+        texto: `Escribe 3 opciones de copy para Instagram anunciando
+la convocatoria de 35mm.`,
+      },
+      {
+        etiqueta: "Ventana 2 — con contexto",
+        texto: `[Aquí va pegado el contexto que acabamos de generar]
+
+Escribe 3 opciones de copy para Instagram anunciando
+la convocatoria de 35mm.`,
+      },
+    ],
+  },
+
   // ================================================================
-  // BLOQUE 6 · 39–54 · Lovable → Pomelli
+  // BLOQUE 6 · 41–55 · Lovable → Pomelli
   // ================================================================
 
   {
@@ -443,11 +476,11 @@ Una sola columna, mucho aire, que se vea bien en celular.`,
     rotulo: "Bloque 7 · Lo que se llevan",
     titulo: "Cinco prompts para los copys del día a día",
     intro:
-      "Todos empiezan igual: **pegan el brief arriba** y después el prompt. Por eso son tan cortos — el contexto ya está puesto. Esta parte queda en la página, no hay que copiarla ahora.",
+      "Todos empiezan igual: **pegan el contexto arriba** y después el prompt. Por eso son tan cortos — lo que el modelo no sabe ya quedó puesto. Esta parte queda en la página, no hay que copiarla ahora.",
     prompts: [
       {
         para: "Anunciar un estreno",
-        texto: `[Pega aquí el brief]
+        texto: `[Pega aquí el contexto]
 
 Vamos a publicar: [qué es, y en una línea de qué trata].
 
@@ -460,7 +493,7 @@ nada de emojis en el gancho.`,
       },
       {
         para: "Convertir una idea en carrusel",
-        texto: `[Pega aquí el brief]
+        texto: `[Pega aquí el contexto]
 
 Convierte esta idea en un carrusel de 6 slides: [la idea].
 
@@ -472,7 +505,7 @@ llamado a la acción.`,
       },
       {
         para: "Guion de un reel",
-        texto: `[Pega aquí el brief]
+        texto: `[Pega aquí el contexto]
 
 Escribe el guion de un reel de 30 segundos sobre: [tema].
 
@@ -483,7 +516,7 @@ Marca qué va como texto en pantalla y qué va como voz.`,
       },
       {
         para: "Arreglar un copy que no convence",
-        texto: `[Pega aquí el brief]
+        texto: `[Pega aquí el contexto]
 
 Este es un copy que escribimos y no nos convence:
 
@@ -494,7 +527,7 @@ versiones mejores. No me expliques las versiones, solo escríbelas.`,
       },
       {
         para: "Llevar un copy a otro formato",
-        texto: `[Pega aquí el brief]
+        texto: `[Pega aquí el contexto]
 
 Este copy funcionó en Instagram:
 
